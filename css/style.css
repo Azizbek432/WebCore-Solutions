@@ -110,6 +110,43 @@ nav ul li a:hover {
   cursor: pointer;
 }
 
+.contact-box {
+  background: #1e293b;
+  padding: 40px;
+  border-radius: 15px;
+  text-align: center;
+  max-width: 600px;
+  margin: 50px auto;
+  border: 1px solid #334155;
+}
+
+.contact-box form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.contact-box input,
+.contact-box textarea {
+  padding: 12px;
+  border-radius: 5px;
+  border: 1px solid #334155;
+  background: #0f172a;
+  color: #fff;
+  outline: none;
+}
+
+.contact-box input:focus,
+.contact-box textarea:focus {
+  border-color: #38bdf8;
+}
+
+.contact-box textarea {
+  height: 120px;
+  resize: none;
+}
+
 @media (max-width: 768px) {
   nav {
     flex-direction: column;
