@@ -1,75 +1,59 @@
 # 🚀 WebCore Solutions - Official Landing Page
 
-Ushbu loyiha **WebCore Solutions** jamoasining rasmiy vizitka sayti hisoblanadi. Loyiha hech qanday tayyor shablonlarsiz, toza kod (**Custom Code**) asosida yaratilgan.
+![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 
-## ✨ Xususiyatlari
-- 🚀 **Ultra-fast performance** - Minimal kod va yuqori tezlik.
-- 📱 **Fully Responsive** - Mobil, planshet va kompyuterlar uchun moslashtirilgan.
-- 🌙 **Modern Dark UI** - Zamonaviy va ko'zga yoqimli dizayn.
-- 🛠 **Custom CSS Grid & Flexbox** - Layout noldan yozilgan.
+---
 
-## 🛠 Texnologiyalar
-Loyiha quyidagi texnologiyalar yordamida ishlab chiqildi:
-- **HTML5** - Semantik struktura.
-- **CSS3** - Custom styling va Media Queries.
-- **Google Fonts** - "Poppins" shrifti.
-- **Vercel** - Deployment va Hosting.
+## 🇺🇿 O'zbek tili (Uzbek)
 
-## 🌐 Jonli namuna (Live Demo)
-Saytni ko'rish uchun quyidagi havolaga o'ting:
+Ushbu loyiha **WebCore Solutions** jamoasining rasmiy vizitka sayti hisoblanadi. Loyiha hech qanday tayyor shablonlarsiz, toza kod (**Custom Code**) asosida yaratilgan bo'lib, yuqori tezlik va zamonaviy dizaynni o'zida mujassam etgan.
+
+### ✨ Asosiy Xususiyatlari
+- 🚀 **Ultra-fast performance** - Minimal kod va yuqori yuklanish tezligi.
+- 📱 **Fully Responsive** - Mobil, planshet va barcha qurilmalar uchun 100% moslashuvchan.
+- 🌙 **Modern Dark UI** - Foydalanuvchi ko'zini charchatmaydigan zamonaviy dizayn.
+- 🛠 **Custom Layout** - CSS Grid va Flexbox yordamida noldan qurilgan struktura.
+
+---
+
+## 🇺🇸 English (Version)
+
+This is the official landing page for the **WebCore Solutions** team. Built from scratch with clean, semantic code, this project showcases high-performance web development and modern UI/UX principles.
+
+### ✨ Key Features
+- 🚀 **Ultra-fast performance** - Optimized for speed and minimal loading times.
+- 📱 **Fully Responsive** - Perfectly adapted for mobiles, tablets, and desktops.
+- 🌙 **Modern Dark UI** - A sleek, user-friendly dark-themed design.
+- 🛠 **Custom Architecture** - Layout built from scratch using modern CSS techniques.
+
+---
+
+## 🌐 Jonli namuna / Live Demo
+Saytni ko'rish uchun quyidagi havolaga oting:  
 👉 [https://web-core-solutions.vercel.app/](https://web-core-solutions.vercel.app/)
 
-## 📁 Fayllar tuzilishi
+## 🛠 Texnologiyalar / Technologies
+- **HTML5** (Semantic Markup)
+- **CSS3** (Custom Properties & Media Queries)
+- **Google Fonts** (Poppins Typography)
+- **Vercel** (Cloud Deployment)
+
+## 📁 Fayllar tuzilishi / File Structure
 ```text
 /
 ├── css/
 │   └── style.css       # Saytning barcha dizayn kodlari
-├── img/                # Loyiha uchun rasmlar (logos, icons)
-├── index.html          # Asosiy sahifa
-└── README.md           # Loyiha haqida ma'lumot
+├── img/                # Rasmlar, logotiplar va ikonalar
+├── index.html          # Asosiy HTML hujjati
+└── README.md           # Loyiha hujjatlari
 
-👨‍💻 Muallif
+👨‍💻 Muallif / Author
 Azizbek Abdullayev - Junior Full-Stack Developer
 
-Telegram: @Azizbek_Abdullayev09
+📫 Telegram: @Azizbek_Abdullayev09
 
-Kanalimiz: @WebCoreSolutions
+📢 Telegram Channel: @WebCoreSolutions
 
----
-
-# 🚀 WebCore Solutions - Official Landing Page
-
-This project is the official business card site of the **WebCore Solutions** team. The project is created without any ready-made templates, based on clean code (**Custom Code**).
-
-## ✨ Features
-- 🚀 **Ultra-fast performance** - Minimal code and high speed.
-- 📱 **Fully Responsive** - Adapted for mobile, tablets and computers.
-- 🌙 **Modern Dark UI** - Modern and eye-pleasing design.
-- 🛠 **Custom CSS Grid & Flexbox** - Layout written from scratch.
-
-## 🛠 Technologies
-The project was developed using the following technologies:
-- **HTML5** - Semantic structure.
-- **CSS3** - Custom styling and Media Queries.
-- **Google Fonts** - "Poppins" font.
-- **Vercel** - Deployment and Hosting.
-
-## 🌐 Live Demo
-To view the site, click on the link below:
-👉 [https://web-core-solutions.vercel.app/](https://web-core-solutions.vercel.app/)
-
-## 📁 File structure
-```text
-/
-├── css/
-│ └── style.css # All design codes of the site
-├── img/ # Images for the project (logos, icons)
-├── index.html # Main page
-└── README.md # Project information
-
-👨‍💻 Author
-Azizbek Abdullayev - Junior Full-Stack Developer
-
-Telegram: @Azizbek_Abdullayev09
-
-Our channel: @WebCoreSolutions
+Created with ❤️ by WebCore Solutions leader.
