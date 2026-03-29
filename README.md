@@ -48,6 +48,7 @@ Saytni ko'rish uchun quyidagi havolaga oting:
 ├── img/                # Rasmlar, logotiplar va ikonalar
 ├── index.html          # Asosiy HTML hujjati
 └── README.md           # Loyiha hujjatlari
+```
 
 👨‍💻 Muallif / Author
 Azizbek Abdullayev - Junior Full-Stack Developer
