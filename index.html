@@ -15,25 +15,37 @@
       type="image/jpg"
     />
   </head>
+  <!-- Bu sayt azizbek tomonidan 13.04.2026y 18:12da qayta yangilandi.. -->
+  <!-- This site was last updated by azizbek on 13.04.2026 at 18:12.. -->
   <body>
-    <!-- Salom!..Men web-site xizmatlarim uchun langing page shablon dizaynini yaratmoqchiman! -->
-    <!-- yozildi : 29.03.2026y 11:33da.. -->
     <header>
       <nav class="container">
         <div class="logo">WebCore<span>Solutions</span></div>
         <ul>
-          <li><a href="#">Bosh sahifa</a></li>
-          <li><a href="#services">Xizmatlar</a></li>
-          <li><a href="#contact">Bog'lanish</a></li>
+          <li><a href="#" data-i18n="nav-home">Bosh sahifa</a></li>
+          <li><a href="#services" data-i18n="nav-services">Xizmatlar</a></li>
+          <li><a href="#contact" data-i18n="nav-contact">Bog'lanish</a></li>
         </ul>
+        <div class="lang-switcher">
+          <button onclick="changeLanguage('uz')">UZ</button>
+          <button onclick="changeLanguage('ru')">RU</button>
+          <button onclick="changeLanguage('en')">EN</button>
+        </div>
       </nav>
     </header>
 
     <section class="hero">
       <div class="container">
-        <h1>Biznesingizni <span>Onlayn</span> dunyoga olib chiqing!</h1>
-        <p>Noldan yozilgan, tez va xavfsiz veb-saytlar faqat bizda.</p>
-        <a href="https://t.me/Azizbek_Abdullayev09" class="btn"
+        <h1 data-i18n="hero-title">
+          Biznesingizni <span>Onlayn</span> dunyoga olib chiqing!
+        </h1>
+        <p data-i18n="hero-desc">
+          Noldan yozilgan, tez va xavfsiz veb-saytlar faqat bizda.
+        </p>
+        <a
+          href="https://t.me/Azizbek_Abdullayev09"
+          class="btn"
+          data-i18n="hero-btn"
           >Buyurtma berish</a
         >
       </div>
@@ -41,34 +53,58 @@
 
     <section id="services" class="services container">
       <div class="service-card">
-        <h3>Landing Page</h3>
-        <p>Tezkor va sifatli bir sahifali saytlar.</p>
+        <h3 data-i18n="service-lp-title">Landing Page</h3>
+        <p data-i18n="service-lp-desc">
+          Tezkor va sifatli bir sahifali saytlar.
+        </p>
       </div>
       <div class="service-card">
-        <h3>Portfolio</h3>
-        <p>Shaxsiy brendingiz uchun maxsus dizayn.</p>
+        <h3 data-i18n="service-port-title">Portfolio</h3>
+        <p data-i18n="service-port-desc">
+          Shaxsiy brendingiz uchun maxsus dizayn.
+        </p>
       </div>
       <div class="service-card">
-        <h3>E-commerce</h3>
-        <p>Savdo-sotiq uchun onlayn do'konlar.</p>
+        <h3 data-i18n="service-eco-title">E-commerce</h3>
+        <p data-i18n="service-eco-desc">Savdo-sotiq uchun onlayn do'konlar.</p>
       </div>
     </section>
+
     <section id="contact" class="container">
       <div class="contact-box">
-        <h2>Biz bilan bog'laning 📩</h2>
-        <p>Loyihangiz haqida yozing, biz sizga tez orada javob beramiz.</p>
+        <h2 data-i18n="contact-title">Biz bilan bog'laning 📩</h2>
+        <p data-i18n="contact-desc">
+          Loyihangiz haqida yozing, biz sizga tez orada javob beramiz.
+        </p>
 
         <form action="https://formspree.io/f/xbdpggwp" method="POST">
-          <input type="text" name="name" placeholder="Ismingiz" required />
-          <input type="email" name="email" placeholder="Emailingiz" required />
+          <input
+            type="text"
+            name="name"
+            data-i18n-placeholder="form-name"
+            placeholder="Ismingiz"
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            data-i18n-placeholder="form-email"
+            placeholder="Emailingiz"
+            required
+          />
           <textarea
             name="message"
+            data-i18n-placeholder="form-msg"
             placeholder="Xabaringiz..."
             required
           ></textarea>
-          <button type="submit" class="btn">Xabar yuborish</button>
+          <button type="submit" class="btn" data-i18n="form-btn">
+            Xabar yuborish
+          </button>
         </form>
       </div>
     </section>
+
+    <script src="js/script.js"></script>
   </body>
 </html>
