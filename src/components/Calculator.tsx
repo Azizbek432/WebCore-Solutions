@@ -23,6 +23,37 @@ export default function Calculator() {
     return base + extraPages + botPrice;
   };
 
+  const sendTelegramNotification = async (price: string) => {
+    // Vaqtinchalik Bot Token va sizning Chat ID (Ixtiyoriy `.env.local` orqali ham berish mumkin)
+    const BOT_TOKEN = process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN;
+    const CHAT_ID = process.env.NEXT_PUBLIC_TELEGRAM_CHAT_ID;
+
+    if (!BOT_TOKEN || !CHAT_ID) return;
+
+    const message = `🚀 *Yangi Buyurtma! (WebCore)*\n\n` +
+      `👤 *Ism:* ${fullName}\n` +
+      `📞 *Aloqa:* ${contactInfo}\n` +
+      `📌 *Loyiha turi:* ${serviceType}\n` +
+      `📄 *Sahifalar:* ${pages}\n` +
+      `🤖 *Telegram Bot:* ${needBot ? 'Ha' : 'Yo\'q'}\n` +
+      `💰 *Taxminiy qiymat:* ${price}\n` +
+      `🌐 *Til:* ${language.toUpperCase()}`;
+
+    try {
+      await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: CHAT_ID,
+          text: message,
+          parse_mode: 'Markdown',
+        }),
+      });
+    } catch (err) {
+      console.error('Telegram notification error:', err);
+    }
+  };
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -38,6 +69,8 @@ export default function Calculator() {
         message: `${t.pageCountMsg}: ${pages}, ${t.telegramBotMsg}: ${needBot ? t.yes : t.no} [Lang: ${language.toUpperCase()}]`
       }
     ]);
+
+    await sendTelegramNotification(estimatedPrice);
 
     setIsSubmitting(false);
 

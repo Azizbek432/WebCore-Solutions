@@ -48,7 +48,10 @@ export const translations = {
     yes: "Ha",
     no: "Yo'q",
     footerDesc: "Raqamli dunyoda o'z o'rningizni yaratish uchun ishonchli hamkor.",
-    footerRights: "Barcha huquqlar strictly himoyalangan."
+    footerRights: "Barcha huquqlar strictly himoyalangan.",
+    comingSoonTitle: "Ushbu sahifa tez orada ishga tushiriladi!",
+    comingSoonDesc: "Ayni paytda ushbu bo'lim ustida qizg'in ishlar olib borilmoqda. Yangiliklarni kuzatib boring.",
+    backHomeBtn: "Bosh sahifaga qaytish",
   },
   en: {
     navHome: "Home",
@@ -101,7 +104,11 @@ export const translations = {
     no: "No",
 
     footerDesc: "Your trusted partner for building digital presence.",
-    footerRights: "All rights reserved."
+    footerRights: "All rights reserved.",
+
+    comingSoonTitle: "This Page is Coming Soon!",
+    comingSoonDesc: "We are currently working hard on this section. Stay tuned for updates.",
+    backHomeBtn: "Back to Home",
   },
   ru: {
     navHome: "Главная",
@@ -152,6 +159,9 @@ export const translations = {
     yes: "Да",
     no: "Нет",
     footerDesc: "Ваш надежный партнер для роста в цифровом мире.",
-    footerRights: "Все права защищены."
+    footerRights: "Все права защищены.",
+    comingSoonTitle: "Эта страница скоро будет запущена!",
+    comingSoonDesc: "В настоящее время мы активно работаем над этим разделом. Следите за обновлениями.",
+    backHomeBtn: "Вернуться на главную",   
   }
 };
