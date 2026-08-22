@@ -24,31 +24,35 @@ export default function Calculator() {
   };
 
   const sendTelegramNotification = async (price: string) => {
-    // Vaqtinchalik Bot Token va sizning Chat ID (Ixtiyoriy `.env.local` orqali ham berish mumkin)
-    const BOT_TOKEN = process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN;
-    const CHAT_ID = process.env.NEXT_PUBLIC_TELEGRAM_CHAT_ID;
+    const BOT_TOKEN = process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN || '8999870201:AAFwAHi2Jpd16BBhI6DTD9aooiYQNrJbSEQ';
+    const CHAT_ID = process.env.NEXT_PUBLIC_TELEGRAM_CHAT_ID || '7974635142';
 
     if (!BOT_TOKEN || !CHAT_ID) return;
 
-    const message = `🚀 *Yangi Buyurtma! (WebCore)*\n\n` +
-      `👤 *Ism:* ${fullName}\n` +
-      `📞 *Aloqa:* ${contactInfo}\n` +
-      `📌 *Loyiha turi:* ${serviceType}\n` +
-      `📄 *Sahifalar:* ${pages}\n` +
-      `🤖 *Telegram Bot:* ${needBot ? 'Ha' : 'Yo\'q'}\n` +
-      `💰 *Taxminiy qiymat:* ${price}\n` +
-      `🌐 *Til:* ${language.toUpperCase()}`;
+    const message = `🚀 <b>Yangi Buyurtma! (WebCore)</b>\n\n` +
+      `👤 <b>Ism:</b> ${fullName}\n` +
+      `📞 <b>Aloqa:</b> ${contactInfo}\n` +
+      `📌 <b>Loyiha turi:</b> ${serviceType}\n` +
+      `📄 <b>Sahifalar:</b> ${pages}\n` +
+      `🤖 <b>Telegram Bot:</b> ${needBot ? 'Ha' : 'Yo\'q'}\n` +
+      `💰 <b>Taxminiy qiymat:</b> ${price}\n` +
+      `🌐 <b>Til:</b> ${language.toUpperCase()}`;
 
     try {
-      await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+      const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           chat_id: CHAT_ID,
           text: message,
-          parse_mode: 'Markdown',
+          parse_mode: 'HTML',
         }),
       });
+
+      const data = await res.json();
+      if (!res.ok) {
+        console.error('Telegram API Error Response:', data);
+      }
     } catch (err) {
       console.error('Telegram notification error:', err);
     }
@@ -59,27 +63,31 @@ export default function Calculator() {
     setIsSubmitting(true);
 
     const estimatedPrice = `$${calculatePrice()}`;
+    try {
+      await sendTelegramNotification(estimatedPrice);
 
-    const { error } = await supabase.from('leads').insert([
-      {
-        full_name: fullName,
-        contact_info: contactInfo,
-        service_type: serviceType,
-        budget_estimate: estimatedPrice,
-        message: `${t.pageCountMsg}: ${pages}, ${t.telegramBotMsg}: ${needBot ? t.yes : t.no} [Lang: ${language.toUpperCase()}]`
+      const { error } = await supabase.from('leads').insert([
+        {
+          full_name: fullName,
+          contact_info: contactInfo,
+          service_type: serviceType,
+          budget_estimate: estimatedPrice,
+          message: `${t.pageCountMsg}: ${pages}, ${t.telegramBotMsg}: ${needBot ? t.yes : t.no} [Lang: ${language.toUpperCase()}]`
+        }
+      ]);
+
+      if (error) {
+        console.error('Supabase Error:', error);
       }
-    ]);
 
-    await sendTelegramNotification(estimatedPrice);
-
-    setIsSubmitting(false);
-
-    if (!error) {
       setSubmitted(true);
       setFullName('');
       setContactInfo('');
-    } else {
+    } catch (err) {
+      console.error('Submit Error:', err);
       alert(t.errorMessage);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
