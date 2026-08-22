@@ -3,7 +3,7 @@
 import { useState, FormEvent } from 'react';
 import { supabase } from '@/lib/supabaseClient';
 import { useLanguage } from '@/context/LanguageContext';
-import { Calculator as CalcIcon, Send, CheckCircle } from 'lucide-react';
+import { Calculator as CalcIcon, Send, CheckCircle, AlertTriangle } from 'lucide-react';
 
 export default function Calculator() {
   const { language, t } = useLanguage();
@@ -15,6 +15,7 @@ export default function Calculator() {
   const [contactInfo, setContactInfo] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const calculatePrice = () => {
     const base = serviceType === 'landing' ? 150 : serviceType === 'ecommerce' ? 400 : 300;
@@ -27,7 +28,7 @@ export default function Calculator() {
     const BOT_TOKEN = process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN || '8999870201:AAFwAHi2Jpd16BBhI6DTD9aooiYQNrJbSEQ';
     const CHAT_ID = process.env.NEXT_PUBLIC_TELEGRAM_CHAT_ID || '7974635142';
 
-    if (!BOT_TOKEN || !CHAT_ID) return;
+    if (!BOT_TOKEN || !CHAT_ID) throw new Error('Telegram Bot token yoki Chat ID topilmadi.');
 
     const message = `🚀 <b>Yangi Buyurtma! (WebCore)</b>\n\n` +
       `👤 <b>Ism:</b> ${fullName}\n` +
@@ -38,34 +39,32 @@ export default function Calculator() {
       `💰 <b>Taxminiy qiymat:</b> ${price}\n` +
       `🌐 <b>Til:</b> ${language.toUpperCase()}`;
 
-    try {
-      const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          chat_id: CHAT_ID,
-          text: message,
-          parse_mode: 'HTML',
-        }),
-      });
+    const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: CHAT_ID,
+        text: message,
+        parse_mode: 'HTML',
+      }),
+    });
 
-      const data = await res.json();
-      if (!res.ok) {
-        console.error('Telegram API Error Response:', data);
-      }
-    } catch (err) {
-      console.error('Telegram notification error:', err);
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data.description || 'Telegram xabar yuborishda xatolik yuz berdi.');
     }
   };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrorMessage(null);
 
     const estimatedPrice = `$${calculatePrice()}`;
-    await sendTelegramNotification(estimatedPrice);
 
     try {
+      await sendTelegramNotification(estimatedPrice);
+
       const { error } = await supabase.from('leads').insert([
         {
           full_name: fullName,
@@ -77,16 +76,19 @@ export default function Calculator() {
       ]);
 
       if (error) {
-        console.error('Supabase Error:', error);
+        throw new Error(error.message || 'Ma\'lumotlar bazasiga saqlashda xatolik yuz berdi.');
       }
-    } catch (dbErr) {
-      console.error('Database save warning:', dbErr);
-    }
 
-    setIsSubmitting(false);
-    setSubmitted(true);
-    setFullName('');
-    setContactInfo('');
+      setSubmitted(true);
+      setFullName('');
+      setContactInfo('');
+    } catch (err: unknown) {
+      console.error('Submission Error:', err);
+      const message = err instanceof Error ? err.message : 'Xatolik yuz berdi. Iltimos qayta urinib ko\'ring.';
+      setErrorMessage(message);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -96,13 +98,23 @@ export default function Calculator() {
         <h2 className="text-2xl font-bold">{t.calcTitle}</h2>
       </div>
 
+      {errorMessage && (
+        <div className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-xl flex items-center gap-3 text-red-400 text-sm">
+          <AlertTriangle className="w-5 h-5 shrink-0" />
+          <span>{errorMessage}</span>
+        </div>
+      )}
+
       {submitted ? (
         <div className="text-center py-12 space-y-4">
           <CheckCircle className="w-16 h-16 text-green-500 mx-auto" />
           <h3 className="text-xl font-semibold">{t.successTitle}</h3>
           <p className="text-slate-400">{t.successDesc}</p>
           <button
-            onClick={() => setSubmitted(false)}
+            onClick={() => {
+              setSubmitted(false);
+              setErrorMessage(null);
+            }}
             className="mt-4 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-sm text-slate-300 rounded-lg transition cursor-pointer"
           >
             {t.recalculateBtn}
