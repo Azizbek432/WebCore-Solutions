@@ -63,9 +63,9 @@ export default function Calculator() {
     setIsSubmitting(true);
 
     const estimatedPrice = `$${calculatePrice()}`;
-    try {
-      await sendTelegramNotification(estimatedPrice);
+    await sendTelegramNotification(estimatedPrice);
 
+    try {
       const { error } = await supabase.from('leads').insert([
         {
           full_name: fullName,
@@ -79,16 +79,14 @@ export default function Calculator() {
       if (error) {
         console.error('Supabase Error:', error);
       }
-
-      setSubmitted(true);
-      setFullName('');
-      setContactInfo('');
-    } catch (err) {
-      console.error('Submit Error:', err);
-      alert(t.errorMessage);
-    } finally {
-      setIsSubmitting(false);
+    } catch (dbErr) {
+      console.error('Database save warning:', dbErr);
     }
+
+    setIsSubmitting(false);
+    setSubmitted(true);
+    setFullName('');
+    setContactInfo('');
   };
 
   return (
@@ -105,7 +103,7 @@ export default function Calculator() {
           <p className="text-slate-400">{t.successDesc}</p>
           <button
             onClick={() => setSubmitted(false)}
-            className="mt-4 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-sm text-slate-300 rounded-lg transition"
+            className="mt-4 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-sm text-slate-300 rounded-lg transition cursor-pointer"
           >
             {t.recalculateBtn}
           </button>
