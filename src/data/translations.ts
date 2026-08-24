@@ -83,7 +83,7 @@ export const translations = {
         description: "React Native va TypeScript asosida yaratilgan audio uzatish va translyatsiya qilish mobil ilovasi.",
         tags: ["React Native", "TypeScript", "Expo", "Audio API"],
         link: "",
-        github: "https://github.com/Azizbek432/TrackCast"
+        github: ""
       },
       {
         title: "American Academy",
@@ -91,14 +91,14 @@ export const translations = {
         description: "Xonqa shahridagi o'quv markazi uchun mo'ljallangan zamonaviy va tezkor landing page sayti.",
         tags: ["HTML5", "CSS3", "JavaScript", "Formspree API"],
         link: "https://american-academy-xonqa.vercel.app",
-        github: "https://github.com/Azizbek432/american-academy"
+        github: "https://github.com/Azizbek432/American-Academy"
       },
       {
         title: "CodeNest Community",
         category: "Open Source Platform",
         description: "Dasturchilar va ochiq kodli loyihalar hamjamiyati uchun platforma va axborot resursi.",
         tags: ["Next.js", "Tailwind CSS", "TypeScript", "Discord API"],
-        link: "https://codenest-community.vercel.app",
+        link: "https://codenest-landing-page.vercel.app",
         github: "https://github.com/CodeNest-Community"
       },
       {
@@ -193,7 +193,7 @@ export const translations = {
         description: "Mobile audio streaming and broadcasting application built with React Native and TypeScript.",
         tags: ["React Native", "TypeScript", "Expo", "Audio API"],
         link: "",
-        github: "https://github.com/Azizbek432/TrackCast"
+        github: ""
       },
       {
         title: "American Academy",
@@ -201,14 +201,14 @@ export const translations = {
         description: "Modern and fast landing page built for American Academy learning center in Khonqa.",
         tags: ["HTML5", "CSS3", "JavaScript", "Formspree API"],
         link: "https://american-academy-xonqa.vercel.app",
-        github: "https://github.com/Azizbek432/american-academy"
+        github: "https://github.com/Azizbek432/American-Academy"
       },
       {
         title: "CodeNest Community",
         category: "Open Source Platform",
         description: "Community platform and hub for open-source developers and collaborative projects.",
         tags: ["Next.js", "Tailwind CSS", "TypeScript", "Discord API"],
-        link: "https://codenest-community.vercel.app",
+        link: "https://codenest-landing-page.vercel.app",
         github: "https://github.com/CodeNest-Community"
       },
       {
@@ -303,7 +303,7 @@ export const translations = {
         description: "Мобильное приложение для потокового аудио и трансляции на React Native и TypeScript.",
         tags: ["React Native", "TypeScript", "Expo", "Audio API"],
         link: "",
-        github: "https://github.com/Azizbek432/TrackCast"
+        github: ""
       },
       {
         title: "American Academy",
@@ -311,14 +311,14 @@ export const translations = {
         description: "Современный и быстрый лендинг для учебного центра American Academy в Ханке.",
         tags: ["HTML5", "CSS3", "JavaScript", "Formspree API"],
         link: "https://american-academy-xonqa.vercel.app",
-        github: "https://github.com/Azizbek432/american-academy"
+        github: "https://github.com/Azizbek432/American-Academy"
       },
       {
         title: "CodeNest Community",
         category: "Open Source Platform",
         description: "Платформа и хаб для сообщества разработчиков и open-source проектов.",
         tags: ["Next.js", "Tailwind CSS", "TypeScript", "Discord API"],
-        link: "https://codenest-community.vercel.app",
+        link: "https://codenest-landing-page.vercel.app",
         github: "https://github.com/CodeNest-Community"
       },
       {
