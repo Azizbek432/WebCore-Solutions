@@ -28,10 +28,7 @@ export default function Calculator() {
     const BOT_TOKEN = process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN || '8999870201:AAFwAHi2Jpd16BBhI6DTD9aooiYQNrJbSEQ';
     const CHAT_ID = process.env.NEXT_PUBLIC_TELEGRAM_CHAT_ID || '7974635142';
 
-    if (!BOT_TOKEN || !CHAT_ID) {
-      console.warn('Telegram token yoki Chat ID sozlanmagan.');
-      return;
-    }
+    if (!BOT_TOKEN || !CHAT_ID) return;
 
     const message = `🚀 <b>Yangi Buyurtma! (WebCore)</b>\n\n` +
       `👤 <b>Ism:</b> ${fullName}\n` +
@@ -53,7 +50,7 @@ export default function Calculator() {
         }),
       });
     } catch (err) {
-      console.error('Telegram API error:', err);
+      console.warn('Telegram bildirishnomasida fonda xatolik (UI ga ta\'siri yo\'q):', err);
     }
   };
 
@@ -65,7 +62,7 @@ export default function Calculator() {
     const estimatedPrice = `$${calculatePrice()}`;
 
     try {
-      await sendTelegramNotification(estimatedPrice);
+      sendTelegramNotification(estimatedPrice);
 
       const { error } = await supabase.from('leads').insert([
         {
@@ -78,16 +75,15 @@ export default function Calculator() {
       ]);
 
       if (error) {
-        throw new Error(error.message || 'Bazada saqlashda xatolik yuz berdi.');
+        throw error;
       }
 
       setSubmitted(true);
       setFullName('');
       setContactInfo('');
     } catch (err: unknown) {
-      console.error('Submission Error:', err);
-      const message = err instanceof Error ? err.message : 'Xatolik yuz berdi. Iltimos qayta urinib ko\'ring.';
-      setErrorMessage(message);
+      console.error('Supabase bazo xatosi:', err);
+      setErrorMessage('Formani yuborishda xatolik yuz berdi. Iltimos, qayta urinib ko\'ring.');
     } finally {
       setIsSubmitting(false);
     }

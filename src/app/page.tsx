@@ -36,7 +36,7 @@ export default function Home() {
               {t.heroCtaPrimary} <ArrowRight className="w-4 h-4" />
             </a>
             <Link
-              href="/services"
+              href="/contact"
               className="px-6 py-3.5 bg-white dark:bg-slate-900/80 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-900 dark:text-slate-200 font-bold rounded-xl border border-slate-200 dark:border-slate-800 transition-all duration-300 shadow-sm"
             >
               {t.heroCtaSecondary}
