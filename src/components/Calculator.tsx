@@ -28,7 +28,10 @@ export default function Calculator() {
     const BOT_TOKEN = process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN || '8999870201:AAFwAHi2Jpd16BBhI6DTD9aooiYQNrJbSEQ';
     const CHAT_ID = process.env.NEXT_PUBLIC_TELEGRAM_CHAT_ID || '7974635142';
 
-    if (!BOT_TOKEN || !CHAT_ID) throw new Error('Telegram Bot token yoki Chat ID topilmadi.');
+    if (!BOT_TOKEN || !CHAT_ID) {
+      console.warn('Telegram token yoki Chat ID sozlanmagan.');
+      return;
+    }
 
     const message = `🚀 <b>Yangi Buyurtma! (WebCore)</b>\n\n` +
       `👤 <b>Ism:</b> ${fullName}\n` +
@@ -39,19 +42,18 @@ export default function Calculator() {
       `💰 <b>Taxminiy qiymat:</b> ${price}\n` +
       `🌐 <b>Til:</b> ${language.toUpperCase()}`;
 
-    const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        chat_id: CHAT_ID,
-        text: message,
-        parse_mode: 'HTML',
-      }),
-    });
-
-    const data = await res.json();
-    if (!res.ok) {
-      throw new Error(data.description || 'Telegram xabar yuborishda xatolik yuz berdi.');
+    try {
+      await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: CHAT_ID,
+          text: message,
+          parse_mode: 'HTML',
+        }),
+      });
+    } catch (err) {
+      console.error('Telegram API error:', err);
     }
   };
 
@@ -76,7 +78,7 @@ export default function Calculator() {
       ]);
 
       if (error) {
-        throw new Error(error.message || 'Ma\'lumotlar bazasiga saqlashda xatolik yuz berdi.');
+        throw new Error(error.message || 'Bazada saqlashda xatolik yuz berdi.');
       }
 
       setSubmitted(true);
@@ -92,14 +94,14 @@ export default function Calculator() {
   };
 
   return (
-    <section className="py-12 px-6 w-full max-w-3xl bg-slate-900 border border-slate-800 rounded-2xl text-white shadow-xl">
-      <div className="flex items-center gap-3 mb-6 pb-4 border-b border-slate-800">
-        <CalcIcon className="text-blue-500 w-7 h-7" />
+    <section className="py-8 px-6 w-full max-w-3xl bg-white dark:bg-cyber-card border border-slate-200 dark:border-amber-500/20 rounded-2xl text-slate-900 dark:text-white shadow-xl transition-colors duration-300">
+      <div className="flex items-center gap-3 mb-6 pb-4 border-b border-slate-200 dark:border-slate-800">
+        <CalcIcon className="text-amber-500 w-7 h-7" />
         <h2 className="text-2xl font-bold">{t.calcTitle}</h2>
       </div>
 
       {errorMessage && (
-        <div className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-xl flex items-center gap-3 text-red-400 text-sm">
+        <div className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-xl flex items-center gap-3 text-red-500 text-sm">
           <AlertTriangle className="w-5 h-5 shrink-0" />
           <span>{errorMessage}</span>
         </div>
@@ -107,15 +109,15 @@ export default function Calculator() {
 
       {submitted ? (
         <div className="text-center py-12 space-y-4">
-          <CheckCircle className="w-16 h-16 text-green-500 mx-auto" />
+          <CheckCircle className="w-16 h-16 text-amber-500 mx-auto animate-pulse" />
           <h3 className="text-xl font-semibold">{t.successTitle}</h3>
-          <p className="text-slate-400">{t.successDesc}</p>
+          <p className="text-slate-500 dark:text-slate-400">{t.successDesc}</p>
           <button
             onClick={() => {
               setSubmitted(false);
               setErrorMessage(null);
             }}
-            className="mt-4 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-sm text-slate-300 rounded-lg transition cursor-pointer"
+            className="mt-4 px-6 py-2.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-sm font-medium rounded-xl transition cursor-pointer"
           >
             {t.recalculateBtn}
           </button>
@@ -127,7 +129,7 @@ export default function Calculator() {
             <select
               value={serviceType}
               onChange={(e) => setServiceType(e.target.value)}
-              className="w-full bg-slate-800 border border-slate-700 rounded-lg p-3 text-white focus:outline-none focus:border-blue-500"
+              className="w-full bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 rounded-xl p-3 text-slate-900 dark:text-white focus:outline-none focus:border-amber-500 transition"
             >
               <option value="landing">{t.landingOption}</option>
               <option value="corporate">{t.corporateOption}</option>
@@ -145,7 +147,7 @@ export default function Calculator() {
               max="10"
               value={pages}
               onChange={(e) => setPages(Number(e.target.value))}
-              className="w-full accent-blue-500 cursor-pointer"
+              className="w-full accent-amber-500 cursor-pointer"
             />
           </div>
 
@@ -155,16 +157,16 @@ export default function Calculator() {
               id="bot"
               checked={needBot}
               onChange={(e) => setNeedBot(e.target.checked)}
-              className="w-5 h-5 accent-blue-500 cursor-pointer"
+              className="w-5 h-5 accent-amber-500 cursor-pointer rounded"
             />
             <label htmlFor="bot" className="text-sm cursor-pointer select-none">
               {t.telegramBotOption}
             </label>
           </div>
 
-          <div className="p-4 bg-slate-800/50 rounded-xl border border-slate-700 flex items-center justify-between">
-            <span className="text-slate-400">{t.estimatedPriceLabel}</span>
-            <span className="text-3xl font-extrabold text-blue-400">${calculatePrice()}</span>
+          <div className="p-4 bg-slate-100 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center justify-between">
+            <span className="text-slate-500 dark:text-slate-400">{t.estimatedPriceLabel}</span>
+            <span className="text-3xl font-extrabold text-amber-500">${calculatePrice()}</span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -175,7 +177,7 @@ export default function Calculator() {
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
               disabled={isSubmitting}
-              className="bg-slate-800 border border-slate-700 rounded-lg p-3 text-white focus:outline-none focus:border-blue-500 disabled:opacity-50"
+              className="bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 rounded-xl p-3 text-slate-900 dark:text-white focus:outline-none focus:border-amber-500 disabled:opacity-50 transition"
             />
             <input
               type="text"
@@ -184,14 +186,14 @@ export default function Calculator() {
               value={contactInfo}
               onChange={(e) => setContactInfo(e.target.value)}
               disabled={isSubmitting}
-              className="bg-slate-800 border border-slate-700 rounded-lg p-3 text-white focus:outline-none focus:border-blue-500 disabled:opacity-50"
+              className="bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 rounded-xl p-3 text-slate-900 dark:text-white focus:outline-none focus:border-amber-500 disabled:opacity-50 transition"
             />
           </div>
 
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-blue-600 hover:bg-blue-700 font-semibold py-3 px-6 rounded-lg flex items-center justify-center gap-2 transition disabled:opacity-50 cursor-pointer"
+            className="w-full bg-amber-500 hover:bg-amber-600 text-black font-bold py-3 px-6 rounded-xl flex items-center justify-center gap-2 transition disabled:opacity-50 cursor-pointer shadow-lg shadow-amber-500/20"
           >
             {isSubmitting ? t.submittingBtn : <><Send className="w-5 h-5" /> {t.submitBtn}</>}
           </button>
