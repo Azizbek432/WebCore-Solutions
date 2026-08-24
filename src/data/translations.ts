@@ -71,7 +71,45 @@ export const translations = {
     locationTitle: "Joylashuv",
     locationValue: "O'zbekiston, Xorazm",
     footerDesc: "Zamonaviy raqamli yechimlar va dasturiy ta'minot studiyasi.",
-    footerRights: "Barcha huquqlar himoyalangan."
+    footerRights: "Barcha huquqlar himoyalangan.",
+    portfolioTitle: "Amalga Oshirilgan Loyihalar",
+    portfolioSub: "Biznesingiz va raqamli g'oyalaringiz uchun yaratilgan zamonaviy, tezkor hamda ishonchli dasturiy yechimlarimiz bilan tanishing.",
+    previewBtn: "Preview Sayt",
+    githubBtn: "GitHub Repository",
+    projects: [
+      {
+        title: "TrackCast",
+        category: "Mobile App",
+        description: "React Native va TypeScript asosida yaratilgan audio uzatish va translyatsiya qilish mobil ilovasi.",
+        tags: ["React Native", "TypeScript", "Expo", "Audio API"],
+        link: "",
+        github: "https://github.com/Azizbek432/TrackCast"
+      },
+      {
+        title: "American Academy",
+        category: "Landing Page",
+        description: "Xonqa shahridagi o'quv markazi uchun mo'ljallangan zamonaviy va tezkor landing page sayti.",
+        tags: ["HTML5", "CSS3", "JavaScript", "Formspree API"],
+        link: "https://american-academy-xonqa.vercel.app",
+        github: "https://github.com/Azizbek432/american-academy"
+      },
+      {
+        title: "CodeNest Community",
+        category: "Open Source Platform",
+        description: "Dasturchilar va ochiq kodli loyihalar hamjamiyati uchun platforma va axborot resursi.",
+        tags: ["Next.js", "Tailwind CSS", "TypeScript", "Discord API"],
+        link: "https://codenest-community.vercel.app",
+        github: "https://github.com/CodeNest-Community"
+      },
+      {
+        title: "Uz_MusicFinder_bot",
+        category: "Telegram Bot",
+        description: "Musiqalarni qidirish, yuklab olish va tezkor tinglash uchun ishlab chiqilgan avtomatlashtirilgan Telegram bot.",
+        tags: ["Python", "Aiogram 3", "Asyncio", "Render"],
+        link: "https://t.me/Uz_MusicFinder_bot",
+        github: "https://github.com/Azizbek432/Uz_MusicFinder_bot"
+      }
+    ]
   },
   en: {
     navHome: "Home",
@@ -143,7 +181,45 @@ export const translations = {
     locationTitle: "Location",
     locationValue: "Uzbekistan, Khorezm",
     footerDesc: "Modern digital solutions and software studio.",
-    footerRights: "All rights reserved."
+    footerRights: "All rights reserved.",
+    portfolioTitle: "Completed Projects",
+    portfolioSub: "Explore our modern, fast, and reliable software solutions designed for your business and digital ideas.",
+    previewBtn: "Live Preview",
+    githubBtn: "GitHub Repository",
+    projects: [
+      {
+        title: "TrackCast",
+        category: "Mobile App",
+        description: "Mobile audio streaming and broadcasting application built with React Native and TypeScript.",
+        tags: ["React Native", "TypeScript", "Expo", "Audio API"],
+        link: "",
+        github: "https://github.com/Azizbek432/TrackCast"
+      },
+      {
+        title: "American Academy",
+        category: "Landing Page",
+        description: "Modern and fast landing page built for American Academy learning center in Khonqa.",
+        tags: ["HTML5", "CSS3", "JavaScript", "Formspree API"],
+        link: "https://american-academy-xonqa.vercel.app",
+        github: "https://github.com/Azizbek432/american-academy"
+      },
+      {
+        title: "CodeNest Community",
+        category: "Open Source Platform",
+        description: "Community platform and hub for open-source developers and collaborative projects.",
+        tags: ["Next.js", "Tailwind CSS", "TypeScript", "Discord API"],
+        link: "https://codenest-community.vercel.app",
+        github: "https://github.com/CodeNest-Community"
+      },
+      {
+        title: "Uz_MusicFinder_bot",
+        category: "Telegram Bot",
+        description: "Automated Telegram bot designed for searching, downloading, and streaming music tracks.",
+        tags: ["Python", "Aiogram 3", "Asyncio", "Render"],
+        link: "https://t.me/Uz_MusicFinder_bot",
+        github: "https://github.com/Azizbek432/Uz_MusicFinder_bot"
+      }
+    ]
   },
   ru: {
     navHome: "Главная",
@@ -215,6 +291,44 @@ export const translations = {
     locationTitle: "Локация",
     locationValue: "Узбекистан, Хорезм",
     footerDesc: "Студия современных цифровых решений и программного обеспечения.",
-    footerRights: "Все права защищены."
+    footerRights: "Все права защищены.",
+    portfolioTitle: "Реализованные Проекты",
+    portfolioSub: "Ознакомьтесь с нашими современными, быстрыми и надежными программными решениями для вашего бизнеса.",
+    previewBtn: "Демо Сайта",
+    githubBtn: "GitHub Репозиторий",
+    projects: [
+      {
+        title: "TrackCast",
+        category: "Mobile App",
+        description: "Мобильное приложение для потокового аудио и трансляции на React Native и TypeScript.",
+        tags: ["React Native", "TypeScript", "Expo", "Audio API"],
+        link: "",
+        github: "https://github.com/Azizbek432/TrackCast"
+      },
+      {
+        title: "American Academy",
+        category: "Landing Page",
+        description: "Современный и быстрый лендинг для учебного центра American Academy в Ханке.",
+        tags: ["HTML5", "CSS3", "JavaScript", "Formspree API"],
+        link: "https://american-academy-xonqa.vercel.app",
+        github: "https://github.com/Azizbek432/american-academy"
+      },
+      {
+        title: "CodeNest Community",
+        category: "Open Source Platform",
+        description: "Платформа и хаб для сообщества разработчиков и open-source проектов.",
+        tags: ["Next.js", "Tailwind CSS", "TypeScript", "Discord API"],
+        link: "https://codenest-community.vercel.app",
+        github: "https://github.com/CodeNest-Community"
+      },
+      {
+        title: "Uz_MusicFinder_bot",
+        category: "Telegram Bot",
+        description: "Автоматизированный Telegram-бот для поиска, скачивания и прослушивания музыки.",
+        tags: ["Python", "Aiogram 3", "Asyncio", "Render"],
+        link: "https://t.me/Uz_MusicFinder_bot",
+        github: "https://github.com/Azizbek432/Uz_MusicFinder_bot"
+      }
+    ]
   }
 };
